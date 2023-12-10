@@ -68,7 +68,6 @@ void fillSpiral(int arr[][SIZEARR]) {
     HANDLE hStdout;
     COORD destCoord;
     hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
-    int num = 0;
     int top = 0, bottom = SIZEARR - 1, left = 0, right = SIZEARR - 1;
     while (left <= right && top <= bottom) {
         //Верхняя строка
