@@ -8,7 +8,7 @@ int choise;
 const int SIZEARR = 6;
 
 int randArr() {
-    return (rand() % 10) + 1;
+    return (rand() % 100) + 1;
 }
 
 void printArr(int arr[][SIZEARR]) {
