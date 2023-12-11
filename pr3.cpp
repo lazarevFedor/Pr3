@@ -24,7 +24,7 @@ void printArr(int arr[][SIZEARR]) {
             cout << *(*(arr + i) + j);
             Sleep(100);
         }
-        cout << "\n";
+        cout << "\n\n";
     }
 }
 
@@ -68,6 +68,7 @@ void fillSpiral(int arr[][SIZEARR]) {
     HANDLE hStdout;
     COORD destCoord;
     hStdout = GetStdHandle(STD_OUTPUT_HANDLE);
+    int num = 0;
     int top = 0, bottom = SIZEARR - 1, left = 0, right = SIZEARR - 1;
     while (left <= right && top <= bottom) {
         //Верхняя строка
@@ -218,63 +219,55 @@ void mathActions(int arr[][SIZEARR]) {
     }
 }
 
-void menu(int arr[][SIZEARR]) {
-    int* ptr = *arr, * end = *arr + SIZEARR * SIZEARR - 1;
-    cout << "Какой пункт вы хотите выбрать?\n" <<
-        "1) Заполнить массив\n" <<
-        "2) Поменять блоки местами\n" <<
-        "3) Отсортировать\n" <<
-        "4) Действия с матрицей\n" <<
-        "5) Вывести массив\n" <<
-        "6) Выход\n-->> ";
-    cin >> choise;
-    switch (choise) {
-    case 1:
-        cout << "\nКаким спсобом заполнить?\n-->> ";
-        cin >> choise;
-        if (choise == 1) {
-            fillSnake(arr);
-        }
-        else if (choise == 2) {
-            fillSpiral(arr);
-        }
-        else
-            cout << "\nНеправильно введено число\n";
-        menu(arr);
-        break;
-    case 2:
-        moveBlocs(arr);
-        printArr(arr);
-        menu(arr);
-        break;
-    case 3:
-        insert(ptr, end);
-        printArr(arr);
-        menu(arr);
-        break;
-    case 4:
-        mathActions(arr);
-        printArr(arr);
-        menu(arr);
-        break;
-    case 5:
-        printArr(arr);
-        menu(arr);
-        break;
-    case 6:
-        exit(0);
-        break;
-    default:
-        cout << "Ошибка! Попробуйте снова\n";
-        menu(arr);
-        break;
-    }
-
-}
-
 int main() {
     setlocale(0, "RU");
     int arr[SIZEARR][SIZEARR];
-    menu(arr);
+    int* ptr = *arr, * end = *arr + SIZEARR * SIZEARR - 1;
+    while (true) {
+        cout << "Какой пункт вы хотите выбрать?\n" <<
+            "1) Заполнить массив\n" <<
+            "2) Поменять блоки местами\n" <<
+            "3) Отсортировать\n" <<
+            "4) Действия с матрицей\n" <<
+            "5) Вывести массив\n" <<
+            "6) Выход\n-->> ";
+        cin >> choise;
+        switch (choise) {
+        case 1:
+            cout << "\nКаким спсобом заполнить?\n-->> ";
+            cin >> choise;
+            if (choise == 1) {
+                fillSnake(arr);
+            }
+            else if (choise == 2) {
+                fillSpiral(arr);
+            }
+            else
+                cout << "\nНеправильно введено число\n";
+            break;
+        case 2:
+            printArr(arr);
+            moveBlocs(arr);
+            printArr(arr);
+            break;
+        case 3:
+            insert(ptr, end);
+            printArr(arr);
+            break;
+        case 4:
+            mathActions(arr);
+            printArr(arr);
+            break;
+        case 5:
+            printArr(arr);
+            break;
+        case 6:
+            exit(0);
+            break;
+        default:
+            cout << "Ошибка! Попробуйте снова\n";
+            break;
+        }
+    }
     return 0;
 }
